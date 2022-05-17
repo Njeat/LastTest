@@ -2,10 +2,7 @@ package com.example.lasttest.service;
 
 import antlr.collections.impl.LList;
 import com.example.lasttest.mapper.ShopMapper;
-import com.example.lasttest.model.Review;
-import com.example.lasttest.model.ReviewImg;
-import com.example.lasttest.model.Shop;
-import com.example.lasttest.model.ShopImg;
+import com.example.lasttest.model.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -50,5 +47,17 @@ public class ShopService {
 
     public List<ReviewImg> getReviewImg(int reviewId){
         return shopMapper.getReviewImg(reviewId);
+    }
+
+    public List<ShopNews> allNews(){
+        return shopMapper.allNews();
+    }
+
+    public List<ShopNews> getNewsByShopId(int shopId){
+        return shopMapper.getNewsByShopId(shopId);
+    }
+
+    public List<ShopNewsImg> getNewsImg(int shopNewsId){
+        return shopMapper.getNewsImg(shopNewsId);
     }
 }

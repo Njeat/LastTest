@@ -18,7 +18,8 @@ public interface ShopMapper {
             @Result(property = "location", column = "locationId", many=@Many(select = "com.example.lasttest.mapper.LocationMapper.getLocationById")),
             @Result(property = "user", column = "userId", many=@Many(select = "com.example.lasttest.mapper.UserMapper.getUserById")),
             @Result(property = "shopImg", column = "shopId", many=@Many(select = "com.example.lasttest.mapper.ShopMapper.getShopImg")),
-            @Result(property = "custom", column = "shopId", many=@Many(select = "com.example.lasttest.mapper.ShopMapper.countCustom"))
+            @Result(property = "custom", column = "shopId", many=@Many(select = "com.example.lasttest.mapper.ShopMapper.countCustom")),
+            @Result(property = "shopNews", column = "shopId", many=@Many(select = "com.example.lasttest.mapper.ShopMapper.getNewsByShopId"))
     })
     List<Shop> allShop();
 
@@ -45,4 +46,17 @@ public interface ShopMapper {
 
     @Select("SELECT * FROM reviewImg WHERE reviewId=#{reviewId}")
     List<ReviewImg> getReviewImg(@Param("reviewId") int reviewId);
+
+    @Select("SELECT * FROM shopNews")
+    @Results(id="NewsImgMap", value = {
+            @Result(property = "shopNewsImg", column = "shopNewsId", many=@Many(select = "com.example.lasttest.mapper.ShopMapper.getNewsImg"))
+    })
+    List<ShopNews> allNews();
+
+    @Select("SELECT * FROM shopNews WHERE shopId = #{shopId}")
+    @ResultMap("NewsImgMap")
+    List<ShopNews> getNewsByShopId(@Param("shopId") int shopId);
+
+    @Select("SELECT * FROM shopNewsImg WHERE shopNewsId = #{shopNewsId}")
+    List<ShopNewsImg> getNewsImg(@Param("shopNewsId") int shopNewsId);
 }

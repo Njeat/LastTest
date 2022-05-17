@@ -18,4 +18,5 @@ public class Shop extends BaseTimeEntity{
     private Location location;
     private List<ShopImg> shopImg;
     private int custom;
+    private List<ShopNews> shopNews;
 }

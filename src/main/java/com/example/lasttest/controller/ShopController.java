@@ -1,9 +1,6 @@
 package com.example.lasttest.controller;
 
-import com.example.lasttest.model.Review;
-import com.example.lasttest.model.ReviewImg;
-import com.example.lasttest.model.Shop;
-import com.example.lasttest.model.ShopImg;
+import com.example.lasttest.model.*;
 import com.example.lasttest.service.ShopService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -56,5 +53,20 @@ public class ShopController {
     @GetMapping("/shop/review/img/{reviewId}")
     public List<ReviewImg> getReviewImg(@PathVariable("reviewId") int reviewId){
         return shopService.getReviewImg(reviewId);
+    }
+
+    @GetMapping("/shop/news")
+    public List<ShopNews> allNews(){
+        return shopService.allNews();
+    }
+
+    @GetMapping("/shop/news/{shopId}")
+    public List<ShopNews> getNewsByShopId(@PathVariable("shopId") int shopId){
+        return shopService.getNewsByShopId(shopId);
+    }
+
+    @GetMapping("/shop/news/img/{shopNewsId}")
+    public List<ShopNewsImg> getNewsImg(@PathVariable("shopNewsId") int shopNewsId){
+        return shopService.getNewsImg(shopNewsId);
     }
 }
