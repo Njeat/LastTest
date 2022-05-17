@@ -1,8 +1,6 @@
 package com.example.lasttest.mapper;
 
-import com.example.lasttest.model.Shop;
-import com.example.lasttest.model.ShopImg;
-import com.example.lasttest.model.User;
+import com.example.lasttest.model.*;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -34,5 +32,17 @@ public interface ShopMapper {
     @Select("SELECT count(customId) FROM custom WHERE status='TRUE' GROUP BY shopId HAVING shopId=#{shopId}")
     int countCustom(@Param("shopId") int shopId);
 
+    @Select("SELECT * from review WHERE shopId=#{shopId}")
+    @Results(id="ReviewMap", value = {
+            @Result(property = "user", column = "userId", many = @Many(select = "com.example.lasttest.mapper.UserMapper.getUserById")),
+            @Result(property = "reviewLike", column = "reviewId", many = @Many(select = "com.example.lasttest.mapper.ShopMapper.countReviewLike")),
+            @Result(property = "reviewImg", column = "reviewId", many = @Many(select = "com.example.lasttest.mapper.ShopMapper.getReviewImg"))
+    })
+    List<Review> getReviewByShopId(@Param("shopId") int shopId);
 
+    @Select("SELECT count(reviewId) FROM reviewLike WHERE status='TRUE' GROUP BY reviewId HAVING reviewId=#{reviewId}")
+    int countReviewLike(@Param("reviewId") int reviewId);
+
+    @Select("SELECT * FROM reviewImg WHERE reviewId=#{reviewId}")
+    List<ReviewImg> getReviewImg(@Param("reviewId") int reviewId);
 }
