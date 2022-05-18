@@ -31,6 +31,10 @@ public class PostService {
         return postMapper.getPostById(postId);
     }
 
+    public List<Post> getPostByUserId(int userId){
+        return postMapper.getPostByUserId(userId);
+    }
+
     public int getPostLike(int postId){
         return postMapper.getPostLike(postId);
     }

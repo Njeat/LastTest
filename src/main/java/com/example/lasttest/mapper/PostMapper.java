@@ -30,6 +30,10 @@ public interface PostMapper {
     @ResultMap("PostMap")
     Post getPostById(@Param("postId") int postId);
 
+    @Select("SELECT * FROM post WHERE userId = #{userId}")
+    @ResultMap("PostMap")
+    List<Post> getPostByUserId(@Param("userId") int userId);
+
     @Select("SELECT count(postLikeId) FROM postLike WHERE status='TRUE' GROUP BY postId HAVING postId=#{postId}")
     int getPostLike(@Param("postId") int postId);
 

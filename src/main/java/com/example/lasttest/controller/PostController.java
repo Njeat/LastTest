@@ -31,6 +31,11 @@ public class PostController {
         return postService.getPostById(postId);
     }
 
+    @GetMapping("/post/user/{userId}")
+    public List<Post> getPostByUserId(@PathVariable("userId") int userId){
+        return postService.getPostByUserId(userId);
+    }
+
     @GetMapping("/post/like/{postId}")
     public int getPostLike(@PathVariable("postId") int postId){
         return postService.getPostLike(postId);
