@@ -32,7 +32,7 @@ public class GoodsController {
         return goodsService.getGoodsById(goodsId);
     }
 
-    @GetMapping("/goods/likes/{goodsId}")
+    @GetMapping("/goods/like/{goodsId}")
     public int getGoodsLike(@PathVariable("goodsId") int goodsId){
         return goodsService.getGoodsLike(goodsId);
     }
