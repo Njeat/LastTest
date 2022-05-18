@@ -32,6 +32,11 @@ public class GoodsController {
         return goodsService.getGoodsById(goodsId);
     }
 
+    @GetMapping("/goods/user/{userId}")
+    public List<Goods> getGoodsByUserId(@PathVariable("userId") int userId){
+        return goodsService.getGoodsByUserId(userId);
+    }
+
     @GetMapping("/goods/like/{goodsId}")
     public int getGoodsLike(@PathVariable("goodsId") int goodsId){
         return goodsService.getGoodsLike(goodsId);

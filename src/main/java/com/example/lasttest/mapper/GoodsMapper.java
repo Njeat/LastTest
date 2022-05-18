@@ -25,6 +25,10 @@ public interface GoodsMapper {
     @ResultMap("GoodsMap")
     Goods getGoodsById(@Param("goodsId") int goodsId);
 
+    @Select("SELECT * FROM goods WHERE userId=#{userId}")
+    @ResultMap("GoodsMap")
+    List<Goods> getGoodsByUserId(@Param("userId") int userId);
+
     @Select("SELECT count(goodsLikeId) FROM goodsLike WHERE status='TRUE' group by goodsId HAVING goodsId=#{goodsId}")
     int getGoodsLike(@Param("goodsId") int goodsId);
 

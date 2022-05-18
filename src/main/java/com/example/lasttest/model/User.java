@@ -18,5 +18,4 @@ public class User extends BaseTimeEntity{
     private int manner;
     private String status;
     private UserLocation userLocation;
-
 }

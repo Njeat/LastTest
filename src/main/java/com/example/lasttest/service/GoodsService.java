@@ -31,6 +31,10 @@ public class GoodsService {
         return goodsMapper.getGoodsById(goodsId);
     }
 
+    public List<Goods> getGoodsByUserId(int userId){
+        return goodsMapper.getGoodsByUserId(userId);
+    }
+
     public int getGoodsLike(int goodsId){
         return goodsMapper.getGoodsLike(goodsId);
     }

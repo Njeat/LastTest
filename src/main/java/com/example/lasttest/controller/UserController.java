@@ -1,5 +1,6 @@
 package com.example.lasttest.controller;
 
+import com.example.lasttest.model.Follow;
 import com.example.lasttest.model.User;
 import com.example.lasttest.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -45,8 +46,8 @@ public class UserController {
         return userId;
     }
 
-//    @GetMapping("/user/location/{userId}")
-//    public List<User> getUserByIdLocation(@PathVariable("userId") int userId){
-//        return userService.getUserByIdLocation(userId);
-//    }
+    @GetMapping("/user/follow/{userId}")
+    public List<Follow> getFollow(@PathVariable("userId") int userId){
+        return userService.getFollow(userId);
+    }
 }

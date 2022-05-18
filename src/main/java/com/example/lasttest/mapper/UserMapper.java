@@ -1,5 +1,6 @@
 package com.example.lasttest.mapper;
 
+import com.example.lasttest.model.Follow;
 import com.example.lasttest.model.User;
 import org.apache.ibatis.annotations.*;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,10 +35,10 @@ public interface UserMapper {
     @Delete("DELETE FROM user WHERE userId=#{userId}")
     void deleteUser(@Param("userId") int userId);
 
-//    @Select("SELECT * FROM user \n" +
-//            "LEFT JOIN userlocation ON user.userId = userlocation.userId \n" +
-//            "LEFT JOIN location ON userlocation.locationId = location.locationId \n" +
-//            "WHERE user.userId=#{userId} AND userlocation.status='TRUE'")
-//    List<User> getUserByIdLocation(@Param("userId") int userId);
+    @Select("SELECT * FROM follow WHERE userId=#{userId}")
+    @Results(id = "FollowGoodsMap", value = {
+            @Result(property = "goods", column = "followUserId", many = @Many(select = "com.example.lasttest.mapper.GoodsMapper.getGoodsByUserId"))
+    })
+    List<Follow> getFollow(@Param("userId") int userId);
 
 }

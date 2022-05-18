@@ -1,5 +1,6 @@
 package com.example.lasttest.service;
 
+import com.example.lasttest.model.Follow;
 import com.example.lasttest.model.User;
 import com.example.lasttest.mapper.UserMapper;
 import lombok.AllArgsConstructor;
@@ -36,8 +37,7 @@ public class UserService {
         userMapper.deleteUser(userId);
     }
 
-//    public List<User> getUserByIdLocation(int userId){
-//        return userMapper.getUserByIdLocation(userId);
-
-//    }
+    public List<Follow> getFollow(int userId){
+        return userMapper.getFollow(userId);
+    }
 }
