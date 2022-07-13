@@ -5,6 +5,7 @@ import com.example.lasttest.model.User;
 import com.example.lasttest.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +24,9 @@ public class UserController {
 
     // 전체 유저 조회
     @GetMapping("/user")
-    public List<User> allUser(){
+    public List<User> allUser(Model model){
+        List<User> users = userService.allUser();
+        model.addAttribute("members",users);
         return userService.allUser();
     }
 
